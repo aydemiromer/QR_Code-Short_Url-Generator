@@ -1,0 +1,12 @@
+{
+    "home_page": {
+        "text_button_qr": "Link Harici qr generator için buna tıklayınız.", 
+        "text_button": "Link kısatlamak için buraya tıklaynız.", 
+        "elevated_button": "Oluştur ve Paylaş", 
+        "text_field_label_url": "Linkiniz",  
+        "text_field_label": "Yazınız."
+        
+    }
+
+
+}

@@ -1,0 +1,12 @@
+{
+    "home_page": {
+        "text_button_qr": "Link Click this for external qr generator.", 
+        "text_button": "Click here to shorten the link..", 
+        "elevated_button": "Create and Share", 
+        "text_field_label_url": "Url",  
+        "text_field_label": "Text"
+        
+    }
+
+
+}

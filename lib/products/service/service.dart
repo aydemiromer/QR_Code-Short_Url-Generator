@@ -14,7 +14,7 @@ class GeneralService extends IService {
   Future<UrlModel?> shortUrl(UrlModel model, BuildContext context, String url) async {
     final response = await manager.send<UrlModel, UrlModel>(NetworkRoutes.SHORTEN.rawValue + url,
         parseModel: UrlModel(), method: RequestType.POST, data: model);
-    var code = Hive.box('myBox');
+    var code = Hive.box('CodeBox');
     response.error?.statusCode != null ? code.put("code", "400") : code.put("code", "201");
     if (response.data is UrlModel) {
       return response.data;

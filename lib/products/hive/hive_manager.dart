@@ -12,6 +12,7 @@ class ManageHive {
 
   Future<void> init() async {
     contactBox = await Hive.openBox('myBox');
+    await Hive.openBox('CodeBox');
     contactBox2 = contactBox!.listenable();
   }
 

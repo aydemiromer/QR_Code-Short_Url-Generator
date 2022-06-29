@@ -86,7 +86,8 @@ Widget _body(BuildContext context, previewContainer, contactBox) => Column(
                                 my_texts(box, index, context),
                                 IconButton(
                                     onPressed: () {
-                                      box.deleteAt(index);
+                                      box.clear();
+                                      //box.deleteAt(index);
                                     },
                                     icon: const Icon(
                                       Icons.delete,

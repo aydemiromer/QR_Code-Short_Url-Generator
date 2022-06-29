@@ -109,10 +109,11 @@ class _DenemeState extends State<HomePage> with LoadingState {
       child: isLoading ? const CircularProgressIndicator() : Text(LocaleKeys.home_page_elevated_button.tr()),
       onPressed: () async {
         var box = Hive.box('myBox');
+        var box2 = Hive.box('CodeBox');
 
         if (!qr_visible) {
           value.shortUrl(context, _textController.text).whenComplete(() {
-            if (box.get("code") != "400") {
+            if (box2.get("code") != "400") {
               ScaffoldMessenger.of(context)
                   .showSnackBar(SnackBarClass.successSnackBar(context.colors.primary, "Success"));
 

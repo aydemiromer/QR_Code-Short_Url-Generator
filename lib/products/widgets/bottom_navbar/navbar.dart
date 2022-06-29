@@ -23,12 +23,14 @@ class CurvedNavigationBarWidget extends StatelessWidget {
       onTap: (index) async {
         if (index == 0) {
           await Hive.close();
+          await Hive.openBox('CodeBox');
           await Hive.openBox('myBox').whenComplete(() => Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const HomePage()),
               ));
         } else {
           await Hive.close();
+          await Hive.openBox('CodeBox');
           await Hive.openBox('myBox')
               .whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context) => MyWidget())));
         }

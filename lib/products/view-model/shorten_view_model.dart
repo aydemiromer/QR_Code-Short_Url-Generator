@@ -23,9 +23,12 @@ class UrlViewModel with BaseViewModel {
   }
 
   String? res;
+  bool isLoading = true;
 
   Future<void> shortUrl(BuildContext context, String url) async {
+    isLoading = false;
     final response = await generalService.shortUrl(UrlModel(), context, url);
+    
 
     res = response?.result!['short_link'];
     print(response?.ok);

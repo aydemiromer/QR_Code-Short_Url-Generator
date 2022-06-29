@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:shorten_app/core/components/space_height_container.dart';
-import 'package:shorten_app/core/constants/enums/network_status.dart';
 import 'package:shorten_app/core/constants/snackbar/snackbar.dart';
 import 'package:shorten_app/core/extensions/context_extension.dart';
 import 'package:shorten_app/core/init/app/base/base_widget.dart';
@@ -13,7 +12,6 @@ import 'package:shorten_app/products/model/localizes.dart';
 import 'package:shorten_app/products/view-model/shorten_view_model.dart';
 import 'package:shorten_app/products/widgets/bottom_navbar/navbar.dart';
 import 'package:shorten_app/products/widgets/buttona/custom_elevated_button.dart';
-import 'package:shorten_app/products/widgets/circular_progress.dart/status_circular.dart';
 import 'package:shorten_app/products/widgets/ios_sheet/cupertino_sheet.dart';
 
 import '../products/init/lang/locale_keys.g.dart';
@@ -29,7 +27,6 @@ class HomePage extends StatefulWidget {
 class _DenemeState extends State<HomePage> with LoadingState {
   late final TextEditingController _textController;
 
-  late final Box contactBox;
   @override
   void initState() {
     super.initState();
@@ -37,15 +34,16 @@ class _DenemeState extends State<HomePage> with LoadingState {
   }
 
   bool counter2 = false;
-  int _counter = 0;
+  int counter = 0;
 
+  // ignore: unused_element
   void _decrement() async {
     setState(() {
       counter2 = true;
     });
     for (var x = 0; x < 5; x++) {
       setState(() {
-        _counter++;
+        counter++;
       });
       await Future.delayed(const Duration(microseconds: 10));
     }
@@ -79,7 +77,6 @@ class _DenemeState extends State<HomePage> with LoadingState {
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Column(
-                    //crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       SizedBox(height: context.height * 0.1, child: _languageAndTheme()),
                       _qr(),
@@ -106,7 +103,11 @@ class _DenemeState extends State<HomePage> with LoadingState {
     return Center(
         child: CustomElevatedButton(
       borderRadius: 20,
-      child: isLoading ? const CircularProgressIndicator() : Text(LocaleKeys.home_page_elevated_button.tr()),
+      child: !value.isLoading
+          ? const CircularProgressIndicator(
+              color: Colors.green,
+            )
+          : Text(LocaleKeys.home_page_elevated_button.tr()),
       onPressed: () async {
         var box = Hive.box('myBox');
         var box2 = Hive.box('CodeBox');
@@ -128,12 +129,15 @@ class _DenemeState extends State<HomePage> with LoadingState {
             } else {
               ScaffoldMessenger.of(context).showSnackBar(SnackBarClass.cancelSnackBar(context.colors.onError, "Error"));
             }
+            setState(() {
+              value.isLoading = true;
+            });
           });
         }
 
         setState(() {
           counter2 = false;
-          _counter = 0;
+          counter = 0;
         });
         //changeLoading();
       },

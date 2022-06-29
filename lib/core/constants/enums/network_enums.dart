@@ -2,7 +2,7 @@ enum NetworkRoutes {
   SHORTEN,
 }
 
-extension NetwrokRoutesString on NetworkRoutes {
+extension NetworkRoutesString on NetworkRoutes {
   String get rawValue {
     switch (this) {
       case NetworkRoutes.SHORTEN:

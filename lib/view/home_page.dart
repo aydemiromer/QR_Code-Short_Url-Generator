@@ -113,7 +113,8 @@ class _DenemeState extends State<HomePage> with LoadingState {
         if (!qr_visible) {
           value.shortUrl(context, _textController.text).whenComplete(() {
             if (box.get("code") != "400") {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBarClass.successSnackBar(context.colors.primary));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBarClass.successSnackBar(context.colors.primary, "Success"));
 
               var liste = MyList()
                 ..qrText = _textController.text
@@ -124,7 +125,7 @@ class _DenemeState extends State<HomePage> with LoadingState {
 
               liste.save();
             } else {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBarClass.cancelSnackBar(context.colors.onError));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBarClass.cancelSnackBar(context.colors.onError, "Error"));
             }
           });
         }

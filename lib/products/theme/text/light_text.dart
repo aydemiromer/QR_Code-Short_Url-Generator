@@ -6,10 +6,8 @@ import '../colors/color_themes.dart';
 class TextThemeLight implements ITextTheme {
   @override
   late final TextTheme data;
-
   @override
   late final String? fontFamily;
-
   @override
   TextStyle? headline1 = const TextStyle(fontSize: 32, fontWeight: FontWeight.w800);
 

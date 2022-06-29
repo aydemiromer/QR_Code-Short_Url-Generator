@@ -8,7 +8,6 @@ class BaseView<T> extends StatefulWidget {
   ) onPageBuilder;
   final T viewModel;
   T? viewModel2;
-
   final Function(T model) onModelReady;
 
   final VoidCallback? onDispose;
@@ -34,7 +33,6 @@ class _BaseViewState<T> extends State<BaseView<T>> {
   void initState() {
     model = widget.viewModel;
     widget.onModelReady(model);
-
     super.initState();
   }
 

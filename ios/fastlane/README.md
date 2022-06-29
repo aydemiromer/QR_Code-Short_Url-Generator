@@ -23,21 +23,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 Push a new beta build to TestFlight
 
-### ios release
-
-```sh
-[bundle exec] fastlane ios release
-```
-
-
-
 ### ios internal
 
 ```sh
 [bundle exec] fastlane ios internal
 ```
 
-Push a new  build internal
+Push a new artifact build internal
 
 ----
 

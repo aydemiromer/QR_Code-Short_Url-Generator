@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SnackBarClass {
-  static successSnackBar(color) => SnackBar(
-        content: Text('Başarılı'),
+  static successSnackBar(color, text) => SnackBar(
+        content: Text(text),
         backgroundColor: color,
       );
-
-       static cancelSnackBar(color) => SnackBar(
-        content: Text('Başarısız'),
+  static cancelSnackBar(color, text) => SnackBar(
+        content: Text(text),
         backgroundColor: color,
       );
 }

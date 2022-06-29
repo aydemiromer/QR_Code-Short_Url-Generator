@@ -20,50 +20,34 @@ platform :ios do
   lane :beta do
     increment_build_number(xcodeproj: "Runner.xcodeproj")
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
-    buildNumber = latest_testflight_build_number
-    incrementBuildNumber(buildNumber)
-    increment_version_number( bump_type: options[:versionType] )
     upload_to_testflight
   end
 
-  lane :release do
-    #capture_screenshots                  # generate new screenshots for the App Store
-    sync_code_signing(type: "appstore")  # see code signing guide for more information
-    build_app(scheme: "MyApp")
-    buildNumber = latest_testflight_build_number
-    incrementBuildNumber(buildNumber)
-    increment_version_number( bump_type: options[:versionType] )
-    upload_to_app_store                  # upload your app to App Store Connect
-    slack(message: "Successfully uploaded a new App Store build")
-  end
-
-  desc "Push a new  build internal"
+  desc "Push a new artifact build internal"
   lane :internal do |options|
       buildNumber = latest_testflight_build_number
       incrementBuildNumber(buildNumber)
       increment_version_number( bump_type: options[:versionType] )
-      build_ios_app
-      upload_to_testflight
-      
+      build_ios_app(
+        scheme: "Release"
+      )
+      #upload_to_testflight
+      # sendMessageSlack()
 
   end
-
- 
 
   def incrementBuildNumber(val)
-      if val != nil
-        increment_build_number({
-       build_number: val + 1
-      })
-      end
+    if val != nil
+      increment_build_number({
+     build_number: val + 1
+    })
+    end
   end
-
   
-
-
   def incerementVersionNumber(versionType)
     if versionType != nil
       increment_version_number( bump_type: options[:versionType] )
     end
   end
+
 end

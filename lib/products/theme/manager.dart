@@ -54,9 +54,6 @@ class ThemeNotifier extends ChangeNotifier {
     var theme = Hive.box(HiveBoxKey.themeKey.name);
     var userCurrentTheme = await theme.get(HiveBoxKey.themeKey.name);
     if (userCurrentTheme != null) {
-      print(userCurrentTheme);
-      print("seçili");
-
       return userCurrentTheme;
     } else {
       await theme.put(HiveBoxKey.themeKey.name, currentTheme);

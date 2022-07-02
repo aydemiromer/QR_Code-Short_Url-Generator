@@ -133,6 +133,17 @@ class _DenemeState extends State<HomePage> with LoadingState {
               value.isLoading = true;
             });
           });
+        } else {
+          var liste = MyList()
+            ..qrText = _textController.text
+            ..text = _textController.text
+            ..link = "";
+
+          box.add(liste);
+
+          liste.save();
+
+          ScaffoldMessenger.of(context).showSnackBar(SnackBarClass.successSnackBar(context.colors.primary, "Success"));
         }
 
         setState(() {

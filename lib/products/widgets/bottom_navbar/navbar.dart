@@ -32,7 +32,7 @@ class CurvedNavigationBarWidget extends StatelessWidget {
           await Hive.close();
           await Hive.openBox('CodeBox');
           await Hive.openBox('myBox')
-              .whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context) => MyWidget())));
+              .whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context) => const MyWidget())));
         }
         //Handle button tap
       },

@@ -31,7 +31,7 @@ platform :ios do
       build_ios_app(
         scheme: "Release"
       )
-      #upload_to_testflight
+      upload_to_testflight
       # sendMessageSlack()
 
   end
